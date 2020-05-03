@@ -1,7 +1,9 @@
-const getUser = (userName, accessToken) =>
-    fetch(`https://api.github.com/users/${userName}?access_token=${accessToken}`)
-        .then(response => response.json());
+const getUser = async (userName) => {
+    const response = await fetch(`https://api.github.com/users/${userName}`)
+    return await response.json();
+}
 
-const getRepos = response =>
-    fetch(response.repos_url)
-        .then(userRepos => userRepos.json());
+const getRepos = async (response) => {
+    const data = await fetch(response.repos_url)
+    return await data.json();
+}
